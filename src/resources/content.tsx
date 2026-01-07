@@ -11,12 +11,16 @@ import type {
 import { Line, Row, Text } from '@once-ui-system/core';
 import { Fragment } from 'react/jsx-runtime';
 
+// Helper to prefix image paths with basePath for GitHub Pages
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH || '';
+const img = (path: string) => `${basePath}${path}`;
+
 const person: Person = {
   firstName: 'Quang',
   lastName: 'Tran',
   name: 'Quang Tran',
   role: 'Fullstack Developer',
-  avatar: '/images/avatar.jpg',
+  avatar: img('/images/avatar.jpg'),
   email: 'dangquang1020@gmail.com',
   location: 'Asia/Ho_Chi_Minh', // Expecting the IANA time zone identifier, e.g., 'Europe/Vienna'
   languages: ['Vietnamese', 'English'], // optional: Leave the array empty if you don't want to display languages
@@ -68,7 +72,7 @@ const social: Social = [
 
 const home: Home = {
   path: '/',
-  image: '/images/og/home.jpg',
+  image: img('/images/og/home.jpg'),
   label: 'Home',
   title: `${person.name}'s Portfolio`,
   description: `Portfolio website showcasing my work as a ${person.role}`,
@@ -144,7 +148,7 @@ const about: About = {
         images: [
           // optional: leave the array empty if you don't want to display images
           {
-            src: '/images/projects/project-01/cover-01.jpg',
+            src: img('/images/projects/project-01/cover-01.jpg'),
             alt: 'Once UI Project',
             width: 16,
             height: 9,
@@ -187,13 +191,13 @@ const about: About = {
         // optional: leave the array empty if you don't want to display images
         images: [
           {
-            src: '/images/projects/project-01/cover-02.jpg',
+            src: img('/images/projects/project-01/cover-02.jpg'),
             alt: 'Project image',
             width: 16,
             height: 9,
           },
           {
-            src: '/images/projects/project-01/cover-03.jpg',
+            src: img('/images/projects/project-01/cover-03.jpg'),
             alt: 'Project image',
             width: 16,
             height: 9,
@@ -222,7 +226,7 @@ const about: About = {
         // optional: leave the array empty if you don't want to display images
         images: [
           {
-            src: '/images/projects/project-01/cover-04.jpg',
+            src: img('/images/projects/project-01/cover-04.jpg'),
             alt: 'Project image',
             width: 16,
             height: 9,
@@ -270,52 +274,52 @@ const gallery: Gallery = {
   // These are placeholder images, replace with your own
   images: [
     {
-      src: '/images/gallery/horizontal-1.jpg',
+      src: img('/images/gallery/horizontal-1.jpg'),
       alt: 'image',
       orientation: 'horizontal',
     },
     {
-      src: '/images/gallery/vertical-4.jpg',
+      src: img('/images/gallery/vertical-4.jpg'),
       alt: 'image',
       orientation: 'vertical',
     },
     {
-      src: '/images/gallery/horizontal-3.jpg',
+      src: img('/images/gallery/horizontal-3.jpg'),
       alt: 'image',
       orientation: 'horizontal',
     },
     {
-      src: '/images/gallery/vertical-1.jpg',
+      src: img('/images/gallery/vertical-1.jpg'),
       alt: 'image',
       orientation: 'vertical',
     },
     {
-      src: '/images/gallery/vertical-2.jpg',
+      src: img('/images/gallery/vertical-2.jpg'),
       alt: 'image',
       orientation: 'vertical',
     },
     {
-      src: '/images/gallery/horizontal-4.jpg',
+      src: img('/images/gallery/horizontal-4.jpg'),
       alt: 'image',
       orientation: 'horizontal',
     },
     {
-      src: '/images/gallery/horizontal-2.jpg',
+      src: img('/images/gallery/horizontal-2.jpg'),
       alt: 'image',
       orientation: 'horizontal',
     },
     {
-      src: '/images/gallery/horizontal-5.jpg',
+      src: img('/images/gallery/horizontal-5.jpg'),
       alt: 'image',
       orientation: 'horizontal',
     },
     {
-      src: '/images/gallery/horizontal-6.jpg',
+      src: img('/images/gallery/horizontal-6.jpg'),
       alt: 'image',
       orientation: 'horizontal',
     },
     {
-      src: '/images/gallery/vertical-3.jpg',
+      src: img('/images/gallery/vertical-3.jpg'),
       alt: 'image',
       orientation: 'vertical',
     },

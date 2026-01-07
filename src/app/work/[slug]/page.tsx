@@ -21,6 +21,11 @@ import { ScrollToHash, CustomMDX } from '@/components';
 import type { Metadata } from 'next';
 import { Projects } from '@/components/work/Projects';
 
+// Helper to prefix image paths with basePath for GitHub Pages
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH || '';
+const withBasePath = (path: string) =>
+  path?.startsWith('/') ? `${basePath}${path}` : path;
+
 export async function generateStaticParams(): Promise<{ slug: string }[]> {
   const posts = getPosts(['src', 'app', 'work', 'projects']);
   return posts.map((post) => ({
@@ -72,7 +77,7 @@ export default async function Project({
 
   const avatars =
     post.metadata.team?.map((person) => ({
-      src: person.avatar,
+      src: withBasePath(person.avatar),
     })) || [];
 
   return (
@@ -131,7 +136,7 @@ export default async function Project({
           aspectRatio='16 / 9'
           radius='m'
           alt='image'
-          src={post.metadata.images[0]}
+          src={withBasePath(post.metadata.images[0])}
         />
       )}
       <Column style={{ margin: 'auto' }} as='article' maxWidth='xs'>

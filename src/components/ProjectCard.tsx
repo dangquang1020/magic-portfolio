@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import {
   AvatarGroup,
@@ -8,7 +8,12 @@ import {
   Heading,
   SmartLink,
   Text,
-} from "@once-ui-system/core";
+} from '@once-ui-system/core';
+
+// Helper to prefix image paths with basePath for GitHub Pages
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH || '';
+const withBasePath = (path: string) =>
+  path?.startsWith('/') ? `${basePath}${path}` : path;
 
 interface ProjectCardProps {
   href: string;
@@ -31,54 +36,60 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
   link,
 }) => {
   return (
-    <Column fillWidth gap="m">
+    <Column fillWidth gap='m'>
       <Carousel
-        sizes="(max-width: 960px) 100vw, 960px"
+        sizes='(max-width: 960px) 100vw, 960px'
         items={images.map((image) => ({
-          slide: image,
+          slide: withBasePath(image),
           alt: title,
         }))}
       />
       <Flex
-        s={{ direction: "column" }}
+        s={{ direction: 'column' }}
         fillWidth
-        paddingX="s"
-        paddingTop="12"
-        paddingBottom="24"
-        gap="l"
+        paddingX='s'
+        paddingTop='12'
+        paddingBottom='24'
+        gap='l'
       >
         {title && (
           <Flex flex={5}>
-            <Heading as="h2" wrap="balance" variant="heading-strong-xl">
+            <Heading as='h2' wrap='balance' variant='heading-strong-xl'>
               {title}
             </Heading>
           </Flex>
         )}
         {(avatars?.length > 0 || description?.trim() || content?.trim()) && (
-          <Column flex={7} gap="16">
-            {avatars?.length > 0 && <AvatarGroup avatars={avatars} size="m" reverse />}
+          <Column flex={7} gap='16'>
+            {avatars?.length > 0 && (
+              <AvatarGroup avatars={avatars} size='m' reverse />
+            )}
             {description?.trim() && (
-              <Text wrap="balance" variant="body-default-s" onBackground="neutral-weak">
+              <Text
+                wrap='balance'
+                variant='body-default-s'
+                onBackground='neutral-weak'
+              >
                 {description}
               </Text>
             )}
-            <Flex gap="24" wrap>
+            <Flex gap='24' wrap>
               {content?.trim() && (
                 <SmartLink
-                  suffixIcon="arrowRight"
-                  style={{ margin: "0", width: "fit-content" }}
+                  suffixIcon='arrowRight'
+                  style={{ margin: '0', width: 'fit-content' }}
                   href={href}
                 >
-                  <Text variant="body-default-s">Read case study</Text>
+                  <Text variant='body-default-s'>Read case study</Text>
                 </SmartLink>
               )}
               {link && (
                 <SmartLink
-                  suffixIcon="arrowUpRightFromSquare"
-                  style={{ margin: "0", width: "fit-content" }}
+                  suffixIcon='arrowUpRightFromSquare'
+                  style={{ margin: '0', width: 'fit-content' }}
                   href={link}
                 >
-                  <Text variant="body-default-s">View project</Text>
+                  <Text variant='body-default-s'>View project</Text>
                 </SmartLink>
               )}
             </Flex>

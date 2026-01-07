@@ -22,6 +22,11 @@ import React from 'react';
 import { Posts } from '@/components/blog/Posts';
 import { ShareSection } from '@/components/blog/ShareSection';
 
+// Helper to prefix image paths with basePath for GitHub Pages
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH || '';
+const withBasePath = (path: string) =>
+  path?.startsWith('/') ? `${basePath}${path}` : path;
+
 export async function generateStaticParams(): Promise<{ slug: string }[]> {
   const posts = getPosts(['src', 'app', 'blog', 'posts']);
   return posts.map((post) => ({
@@ -136,7 +141,7 @@ export default async function Blog({
           </Row>
           {post.metadata.image && (
             <Media
-              src={post.metadata.image}
+              src={withBasePath(post.metadata.image)}
               alt={post.metadata.title}
               aspectRatio='16/9'
               priority
